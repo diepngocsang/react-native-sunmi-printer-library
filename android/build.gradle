@@ -100,3 +100,9 @@ dependencies {
   // https://mvnrepository.com/artifact/com.sunmi/printerlibrary
   implementation "com.sunmi:printerlibrary:1.0.23"
 }
+
+afterEvaluate {
+    tasks.matching { it.name.contains("packageDebugResources") }.all {
+        it.dependsOn tasks.matching { task -> task.name.contains("generateDebugResValues") }
+    }
+}
